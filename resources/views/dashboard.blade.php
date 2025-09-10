@@ -106,27 +106,6 @@
 
     <!-- Right col -->
     <div class="col-md-4">
-        <!-- PRODUCTIVE CHART -->
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Quick Actions</h3>
-            </div>
-
-            <div class="card-body">
-                <div class="d-grid gap-2">
-                    <a href="{{ route('opin.create') }}" class="btn btn-primary">
-                        <i class="fas fa-plus mr-2"></i>Add New OPIN
-                    </a>
-                    <a href="{{ route('opin.index') }}" class="btn btn-info">
-                        <i class="fas fa-list mr-2"></i>View All Records
-                    </a>
-                    <a href="#" class="btn btn-success">
-                        <i class="fas fa-chart-bar mr-2"></i>Generate Report
-                    </a>
-                </div>
-            </div>
-        </div>
-
         <!-- SYSTEM INFO -->
         <div class="card">
             <div class="card-header">
