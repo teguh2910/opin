@@ -47,42 +47,6 @@
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label for="rm_cost" class="form-label">RM Cost</label>
-                                <input type="number" step="0.01" class="form-control @error('rm_cost') is-invalid @enderror" id="rm_cost" name="rm_cost" value="{{ old('rm_cost') }}" required>
-                                @error('rm_cost')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="ckd_cost" class="form-label">CKD Cost</label>
-                                <input type="number" step="0.01" class="form-control @error('ckd_cost') is-invalid @enderror" id="ckd_cost" name="ckd_cost" value="{{ old('ckd_cost') }}" required>
-                                @error('ckd_cost')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label for="ip_cost" class="form-label">IP Cost</label>
-                                <input type="number" step="0.01" class="form-control @error('ip_cost') is-invalid @enderror" id="ip_cost" name="ip_cost" value="{{ old('ip_cost') }}" required>
-                                @error('ip_cost')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="lp_cost" class="form-label">LP Cost</label>
-                                <input type="number" step="0.01" class="form-control @error('lp_cost') is-invalid @enderror" id="lp_cost" name="lp_cost" value="{{ old('lp_cost') }}" required>
-                                @error('lp_cost')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="col-md-6 mb-3">
                                 <label for="labor_cost" class="form-label">Labor Cost</label>
                                 <input type="number" step="0.01" class="form-control @error('labor_cost') is-invalid @enderror" id="labor_cost" name="labor_cost" value="{{ old('labor_cost') }}" required>
                                 @error('labor_cost')

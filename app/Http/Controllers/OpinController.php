@@ -13,6 +13,7 @@ class OpinController extends Controller
     public function index()
     {
         $opins = Opin::all();
+
         return view('opin.index', compact('opins'));
     }
 
@@ -33,10 +34,6 @@ class OpinController extends Controller
             'part_no' => 'required|string|max:255',
             'part_name' => 'required|string|max:255',
             'sales_price' => 'required|numeric|min:0',
-            'rm_cost' => 'required|numeric|min:0',
-            'ckd_cost' => 'required|numeric|min:0',
-            'ip_cost' => 'required|numeric|min:0',
-            'lp_cost' => 'required|numeric|min:0',
             'labor_cost' => 'required|numeric|min:0',
             'machine_cost' => 'required|numeric|min:0',
             'current_machine' => 'required|numeric|min:0',
@@ -55,6 +52,7 @@ class OpinController extends Controller
     public function show(string $id)
     {
         $opin = Opin::findOrFail($id);
+
         return view('opin.show', compact('opin'));
     }
 
@@ -64,6 +62,7 @@ class OpinController extends Controller
     public function edit(string $id)
     {
         $opin = Opin::findOrFail($id);
+
         return view('opin.edit', compact('opin'));
     }
 
@@ -76,10 +75,6 @@ class OpinController extends Controller
             'part_no' => 'required|string|max:255',
             'part_name' => 'required|string|max:255',
             'sales_price' => 'required|numeric|min:0',
-            'rm_cost' => 'required|numeric|min:0',
-            'ckd_cost' => 'required|numeric|min:0',
-            'ip_cost' => 'required|numeric|min:0',
-            'lp_cost' => 'required|numeric|min:0',
             'labor_cost' => 'required|numeric|min:0',
             'machine_cost' => 'required|numeric|min:0',
             'current_machine' => 'required|numeric|min:0',
@@ -110,6 +105,7 @@ class OpinController extends Controller
     public function target()
     {
         $opins = Opin::all();
+
         return view('opin.target', compact('opins'));
     }
 }

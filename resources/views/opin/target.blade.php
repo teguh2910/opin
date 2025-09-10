@@ -107,24 +107,38 @@
                 <div id="results" class="mt-4" style="display: none;">
                     <h5>Calculation Results</h5>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label class="font-weight-bold">Target Total DM Cost (Rp)</label>
                                 <input type="text" class="form-control bg-light font-weight-bold" id="target_dm_result" readonly>
                                 <small class="text-muted">Required DM cost for target profit</small>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label class="font-weight-bold">Existing Total DM Cost (Rp)</label>
                                 <input type="text" class="form-control bg-light" id="existing_dm_result" readonly>
                                 <small class="text-muted">Current DM cost from selected OPIN</small>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="font-weight-bold">Need Reduce (Rp)</label>
+                                <input type="text" class="form-control bg-warning font-weight-bold" id="gap_result" readonly>
+                                <small class="text-muted">Difference between target and existing</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="font-weight-bold">Need Reduce (%)</label>
+                                <input type="text" class="form-control bg-warning font-weight-bold" id="gap_percentage_result" readonly>
+                                <small class="text-muted">Percentage difference</small>
+                            </div>
+                        </div>
                     </div>
                     <div class="alert alert-info">
                         <strong>Note:</strong> Compare the target DM cost (what you need) with the existing DM cost (what you currently have).
-                        This helps you understand the cost adjustments required to achieve your target profit margin.
+                        The GAP shows the adjustment needed to achieve your target profit margin.
                     </div>
                 </div>
             </div>
@@ -175,9 +189,26 @@ function loadOpinData() {
         const existingDmCost = rmCost + ckdCost + ipCost + lpCost;
         
         document.getElementById('existing_dm_result').value = formatNumber(existingDmCost);
+        
+        // Calculate GAP if target is already calculated
+        const targetDmCost = parseFormattedNumber(document.getElementById('target_dm_result').value);
+        if (targetDmCost > 0) {
+            const gap = targetDmCost - existingDmCost;
+            document.getElementById('gap_result').value = formatNumber(gap);
+            
+            // Calculate and display GAP percentage
+            if (existingDmCost > 0) {
+                const gapPercentage = (gap / existingDmCost) * 100;
+                document.getElementById('gap_percentage_result').value = gapPercentage.toFixed(2) + '%';
+            } else {
+                document.getElementById('gap_percentage_result').value = 'N/A';
+            }
+        }
     } else {
         // Clear existing DM cost if no OPIN selected
         document.getElementById('existing_dm_result').value = '';
+        document.getElementById('gap_result').value = '';
+        document.getElementById('gap_percentage_result').value = '';
     }
 }
 
@@ -187,6 +218,8 @@ function clearForm() {
     document.getElementById('results').style.display = 'none';
     document.getElementById('target_dm_result').value = '';
     document.getElementById('existing_dm_result').value = '';
+    document.getElementById('gap_result').value = '';
+    document.getElementById('gap_percentage_result').value = '';
     
     // Clear formatted values
     document.getElementById('sales_price').value = '';
@@ -243,6 +276,20 @@ function calculateTarget() {
 
     // Display target DM cost
     document.getElementById('target_dm_result').value = formatNumber(variableCosts);
+
+    // Calculate and display GAP
+    const existingDmCost = parseFormattedNumber(document.getElementById('existing_dm_result').value);
+    if (existingDmCost > 0) {
+        const gap = variableCosts - existingDmCost;
+        document.getElementById('gap_result').value = formatNumber(gap);
+        
+        // Calculate and display GAP percentage
+        const gapPercentage = (gap / existingDmCost) * 100;
+        document.getElementById('gap_percentage_result').value = gapPercentage.toFixed(2) + '%';
+    } else {
+        document.getElementById('gap_result').value = 'Select OPIN to calculate GAP';
+        document.getElementById('gap_percentage_result').value = 'Select OPIN to calculate GAP';
+    }
 
     document.getElementById('results').style.display = 'block';
 }

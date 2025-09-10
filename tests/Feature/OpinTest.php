@@ -57,8 +57,8 @@ class OpinTest extends TestCase
         $response = $this->get(route('opin.index'));
 
         $response->assertStatus(200)
-                ->assertViewIs('opin.index')
-                ->assertViewHas('opins');
+            ->assertViewIs('opin.index')
+            ->assertViewHas('opins');
     }
 
     /** @test */
@@ -69,7 +69,7 @@ class OpinTest extends TestCase
         $response = $this->get(route('opin.create'));
 
         $response->assertStatus(200)
-                ->assertViewIs('opin.create');
+            ->assertViewIs('opin.create');
     }
 
     /** @test */
@@ -81,10 +81,6 @@ class OpinTest extends TestCase
             'part_no' => 'TEST-001',
             'part_name' => 'Test Part',
             'sales_price' => 100.50,
-            'rm_cost' => 20.00,
-            'ckd_cost' => 15.00,
-            'ip_cost' => 5.00,
-            'lp_cost' => 3.00,
             'labor_cost' => 10.00,
             'machine_cost' => 25.00,
             'current_machine' => 12.00,
@@ -95,7 +91,7 @@ class OpinTest extends TestCase
         $response = $this->post(route('opin.store'), $opinData);
 
         $response->assertRedirect(route('opin.index'))
-                ->assertSessionHas('success');
+            ->assertSessionHas('success');
 
         $this->assertDatabaseHas('opins', $opinData);
     }
@@ -111,10 +107,6 @@ class OpinTest extends TestCase
             'part_no',
             'part_name',
             'sales_price',
-            'rm_cost',
-            'ckd_cost',
-            'ip_cost',
-            'lp_cost',
             'labor_cost',
             'machine_cost',
             'current_machine',
@@ -133,8 +125,8 @@ class OpinTest extends TestCase
         $response = $this->get(route('opin.show', $opin));
 
         $response->assertStatus(200)
-                ->assertViewIs('opin.show')
-                ->assertViewHas('opin', $opin);
+            ->assertViewIs('opin.show')
+            ->assertViewHas('opin', $opin);
     }
 
     /** @test */
@@ -147,8 +139,8 @@ class OpinTest extends TestCase
         $response = $this->get(route('opin.edit', $opin));
 
         $response->assertStatus(200)
-                ->assertViewIs('opin.edit')
-                ->assertViewHas('opin', $opin);
+            ->assertViewIs('opin.edit')
+            ->assertViewHas('opin', $opin);
     }
 
     /** @test */
@@ -162,10 +154,6 @@ class OpinTest extends TestCase
             'part_no' => 'UPDATED-001',
             'part_name' => 'Updated Part',
             'sales_price' => 150.75,
-            'rm_cost' => 25.00,
-            'ckd_cost' => 18.00,
-            'ip_cost' => 6.00,
-            'lp_cost' => 4.00,
             'labor_cost' => 12.00,
             'machine_cost' => 30.00,
             'current_machine' => 15.00,
@@ -176,7 +164,7 @@ class OpinTest extends TestCase
         $response = $this->put(route('opin.update', $opin), $updatedData);
 
         $response->assertRedirect(route('opin.index'))
-                ->assertSessionHas('success');
+            ->assertSessionHas('success');
 
         $this->assertDatabaseHas('opins', $updatedData);
     }
@@ -211,7 +199,7 @@ class OpinTest extends TestCase
         $response = $this->delete(route('opin.destroy', $opin));
 
         $response->assertRedirect(route('opin.index'))
-                ->assertSessionHas('success');
+            ->assertSessionHas('success');
 
         $this->assertDatabaseMissing('opins', ['id' => $opin->id]);
     }
@@ -223,10 +211,6 @@ class OpinTest extends TestCase
 
         $opin = Opin::factory()->create([
             'sales_price' => 100.00,
-            'rm_cost' => 20.00,
-            'ckd_cost' => 15.00,
-            'ip_cost' => 5.00,
-            'lp_cost' => 3.00,
             'labor_cost' => 10.00,
             'machine_cost' => 25.00,
             'current_machine' => 12.00,
@@ -241,9 +225,9 @@ class OpinTest extends TestCase
         $response = $this->get(route('opin.show', $opin));
 
         $response->assertStatus(200)
-                ->assertViewHas('opin', function ($viewOpin) {
-                    return $viewOpin->id === $this->user->id; // This will be checked in the view
-                });
+            ->assertViewHas('opin', function ($viewOpin) {
+                return $viewOpin->id === $this->user->id; // This will be checked in the view
+            });
     }
 
     /** @test */
@@ -254,9 +238,9 @@ class OpinTest extends TestCase
         $response = $this->get(route('opin.index'));
 
         $response->assertStatus(200)
-                ->assertViewHas('opins', function ($opins) {
-                    return $opins->count() === 0;
-                });
+            ->assertViewHas('opins', function ($opins) {
+                return $opins->count() === 0;
+            });
     }
 
     /** @test */
@@ -288,10 +272,6 @@ class OpinTest extends TestCase
             'part_no' => 'TEST-001',
             'part_name' => 'Test Part',
             'sales_price' => 100.00,
-            'rm_cost' => 20.00,
-            'ckd_cost' => 15.00,
-            'ip_cost' => 5.00,
-            'lp_cost' => 3.00,
             'labor_cost' => 10.00,
             'machine_cost' => 25.00,
             'current_machine' => 12.00,

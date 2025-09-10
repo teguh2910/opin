@@ -93,6 +93,18 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('bom.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-cogs"></i>
+              <p>Bill of Materials</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('component.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-boxes"></i>
+              <p>Components</p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ route('opin.target') }}" class="nav-link">
               <i class="nav-icon fas fa-calculator"></i>
               <p>Target OPIN Calculator</p>

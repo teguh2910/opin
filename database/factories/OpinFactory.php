@@ -17,13 +17,9 @@ class OpinFactory extends Factory
     public function definition(): array
     {
         return [
-            'part_no' => 'PART-' . $this->faker->unique()->numberBetween(1000, 9999),
+            'part_no' => 'PART-'.$this->faker->unique()->numberBetween(1000, 9999),
             'part_name' => $this->faker->words(2, true),
             'sales_price' => $this->faker->randomFloat(2, 50, 500),
-            'rm_cost' => $this->faker->randomFloat(2, 10, 100),
-            'ckd_cost' => $this->faker->randomFloat(2, 5, 50),
-            'ip_cost' => $this->faker->randomFloat(2, 2, 20),
-            'lp_cost' => $this->faker->randomFloat(2, 1, 15),
             'labor_cost' => $this->faker->randomFloat(2, 5, 30),
             'machine_cost' => $this->faker->randomFloat(2, 10, 80),
             'current_machine' => $this->faker->randomFloat(2, 5, 40),

@@ -7,6 +7,8 @@ Route::get('/', function () {
 });
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BomController;
+use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\OpinController;
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -21,4 +23,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile', [AuthController::class, 'updateProfile']);
     Route::get('/opin/target', [OpinController::class, 'target'])->name('opin.target');
     Route::resource('opin', OpinController::class);
+    Route::resource('bom', BomController::class);
+    Route::resource('component', ComponentController::class);
+    Route::get('component/upload/excel', [ComponentController::class, 'showUploadForm'])->name('component.upload.form');
+    Route::post('component/upload/excel', [ComponentController::class, 'uploadExcel'])->name('component.upload.excel');
+    Route::get('component/download/template', [ComponentController::class, 'downloadTemplate'])->name('component.download.template');
 });
