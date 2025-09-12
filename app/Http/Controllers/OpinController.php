@@ -39,9 +39,13 @@ class OpinController extends Controller
             'current_machine' => 'required|numeric|min:0',
             'other_fixed' => 'required|numeric|min:0',
             'defect_cost' => 'required|numeric|min:0',
+            'sg_a_percentage' => 'required|numeric|min:0|max:100',
         ]);
 
-        Opin::create($request->all());
+        $data = $request->all();
+        $data['sg_a_percentage'] = $request->sg_a_percentage / 100; // Convert percentage to decimal
+
+        Opin::create($data);
 
         return redirect()->route('opin.index')->with('success', 'OPIN created successfully.');
     }
@@ -80,10 +84,14 @@ class OpinController extends Controller
             'current_machine' => 'required|numeric|min:0',
             'other_fixed' => 'required|numeric|min:0',
             'defect_cost' => 'required|numeric|min:0',
+            'sg_a_percentage' => 'required|numeric|min:0|max:100',
         ]);
 
         $opin = Opin::findOrFail($id);
-        $opin->update($request->all());
+        $data = $request->all();
+        $data['sg_a_percentage'] = $request->sg_a_percentage / 100; // Convert percentage to decimal
+
+        $opin->update($data);
 
         return redirect()->route('opin.index')->with('success', 'OPIN updated successfully.');
     }

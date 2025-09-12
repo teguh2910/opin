@@ -19,6 +19,7 @@ class Opin extends Model
         'current_machine',
         'other_fixed',
         'defect_cost',
+        'sg_a_percentage',
     ];
 
     protected $casts = [
@@ -28,6 +29,7 @@ class Opin extends Model
         'current_machine' => 'decimal:2',
         'other_fixed' => 'decimal:2',
         'defect_cost' => 'decimal:2',
+        'sg_a_percentage' => 'decimal:4',
     ];
 
     /**
@@ -110,11 +112,11 @@ class Opin extends Model
     }
 
     /**
-     * Calculate SG&A (6.55% of Product Cost Without Common Cost)
+     * Calculate SG&A (dynamic percentage of Product Cost Without Common Cost)
      */
     public function getSgaAttribute(): float
     {
-        return $this->product_cost_without_common_cost * 0.0655;
+        return $this->product_cost_without_common_cost * $this->sg_a_percentage;
     }
 
     /**
