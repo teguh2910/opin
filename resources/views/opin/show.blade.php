@@ -115,7 +115,15 @@
                                             </tr>
                                             <tr>
                                                 <td><strong>Total Product Cost:</strong></td>
-                                                <td>Rp {{ number_format($opin->total_product_cost, 0, ',', '.') }}</td>
+                                                <td>
+                                                    Rp {{ number_format($opin->total_product_cost, 0, ',', '.') }}
+                                                    @if ($opin->manual_total_product_cost)
+                                                        <span class="badge bg-warning text-dark">Manual</span>
+                                                        <br>
+                                                        <small class="text-muted">Calculated: Rp
+                                                            {{ number_format($opin->calculated_total_product_cost, 0, ',', '.') }}</small>
+                                                    @endif
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td><strong>Profit %:</strong></td>

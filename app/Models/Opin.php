@@ -20,6 +20,7 @@ class Opin extends Model
         'other_fixed',
         'defect_cost',
         'sg_a_percentage',
+        'manual_total_product_cost',
     ];
 
     protected $casts = [
@@ -30,6 +31,7 @@ class Opin extends Model
         'other_fixed' => 'decimal:2',
         'defect_cost' => 'decimal:2',
         'sg_a_percentage' => 'decimal:4',
+        'manual_total_product_cost' => 'decimal:2',
     ];
 
     /**
@@ -128,9 +130,21 @@ class Opin extends Model
     }
 
     /**
-     * Calculate Total Product Cost
+     * Calculate Total Product Cost (use manual if set, otherwise calculate)
      */
     public function getTotalProductCostAttribute(): float
+    {
+        if ($this->manual_total_product_cost !== null) {
+            return $this->manual_total_product_cost;
+        }
+
+        return $this->product_cost_without_common_cost + $this->sg_a + $this->royalty;
+    }
+
+    /**
+     * Get Calculated Total Product Cost (always calculated, ignoring manual)
+     */
+    public function getCalculatedTotalProductCostAttribute(): float
     {
         return $this->product_cost_without_common_cost + $this->sg_a + $this->royalty;
     }

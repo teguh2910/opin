@@ -40,6 +40,7 @@ class OpinController extends Controller
             'other_fixed' => 'required|numeric|min:0',
             'defect_cost' => 'required|numeric|min:0',
             'sg_a_percentage' => 'required|numeric|min:0|max:100',
+            'manual_total_product_cost' => 'nullable|numeric|min:0',
         ]);
 
         $data = $request->all();
@@ -85,6 +86,7 @@ class OpinController extends Controller
             'other_fixed' => 'required|numeric|min:0',
             'defect_cost' => 'required|numeric|min:0',
             'sg_a_percentage' => 'required|numeric|min:0|max:100',
+            'manual_total_product_cost' => 'nullable|numeric|min:0',
         ]);
 
         $opin = Opin::findOrFail($id);

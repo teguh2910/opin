@@ -121,6 +121,20 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="manual_total_product_cost" class="form-label">Manual Total Product Cost
+                                        (Optional)</label>
+                                    <input type="number" step="0.01" min="0"
+                                        class="form-control @error('manual_total_product_cost') is-invalid @enderror"
+                                        id="manual_total_product_cost" name="manual_total_product_cost"
+                                        value="{{ old('manual_total_product_cost', $opin->manual_total_product_cost) }}">
+                                    <small class="form-text text-muted">Leave empty to use calculated value. Current
+                                        calculated: Rp
+                                        {{ number_format($opin->calculated_total_product_cost, 0, ',', '.') }}</small>
+                                    @error('manual_total_product_cost')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
 
                             <div class="d-flex justify-content-end">
