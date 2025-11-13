@@ -54,16 +54,16 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="target_profit_percentage">Target Profit (%)</label>
-                                    <input type="number" class="form-control" id="target_profit_percentage" name="target_profit_percentage"
-                                        step="0.01" onchange="calculateFromPercentage()">
+                                    <input type="number" class="form-control" id="target_profit_percentage"
+                                        name="target_profit_percentage" step="0.01" onchange="calculateFromPercentage()">
                                     <small class="text-muted">Or enter amount below</small>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="target_profit_amount">Target Profit (Rp)</label>
-                                    <input type="number" class="form-control" id="target_profit_amount" name="target_profit_amount"
-                                        step="0.01" onchange="calculateFromAmount()">
+                                    <input type="number" class="form-control" id="target_profit_amount"
+                                        name="target_profit_amount" step="0.01" onchange="calculateFromAmount()">
                                     <small class="text-muted">Or enter percentage above</small>
                                 </div>
                             </div>
@@ -260,12 +260,12 @@
         function calculateFromPercentage() {
             const salesPrice = parseFormattedNumber(document.getElementById('sales_price').value);
             const targetProfitPercentage = parseFloat(document.getElementById('target_profit_percentage').value);
-            
+
             if (salesPrice && targetProfitPercentage) {
                 const requiredRatio = (targetProfitPercentage / 100) + 1;
                 const requiredTotalCost = salesPrice / requiredRatio;
                 const profitAmount = salesPrice - requiredTotalCost;
-                
+
                 document.getElementById('target_profit_amount').value = formatNumber(profitAmount);
             }
         }
@@ -273,7 +273,7 @@
         function calculateFromAmount() {
             const salesPrice = parseFormattedNumber(document.getElementById('sales_price').value);
             const targetProfitAmount = parseFormattedNumber(document.getElementById('target_profit_amount').value);
-            
+
             if (salesPrice && targetProfitAmount) {
                 const requiredTotalCost = salesPrice - targetProfitAmount;
                 if (requiredTotalCost > 0) {
@@ -379,7 +379,7 @@
             document.getElementById('other_fixed').value = '0';
             document.getElementById('defect_cost').value = '0';
             document.getElementById('sg_a_percentage').value = '6.55';
-            
+
             // Clear result fields
             document.getElementById('result_sales_price').value = '';
             document.getElementById('result_total_product_cost').value = '';
